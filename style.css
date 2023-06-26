@@ -1,0 +1,70 @@
+:root {
+    --color-background: #f9f9f9;
+    --color-secondary: #e4e4e7;
+    --color-text: #2e2f31;
+    --color-text-secondary: #515354;
+    --color-accent: #f7a400;
+    --theme-name: "light";
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+    --color-background: #2e2f31;
+    --color-secondary: #515354;
+    --color-text: #f9f9f9;
+    --color-text-secondary: #e4e4e7;
+    --color-accent: #f7a400;
+    --theme-name: "dark";
+    }
+}
+
+body {
+    background-color: var(--color-background);
+}
+
+h1 {
+    color: var(--color-text);
+    text-align: center;
+    font-size: 10rem;
+    padding: 0;
+    margin: 0;
+}
+
+h2 {
+    padding: 0;
+    margin: 0;
+    color: var(--color-text-secondary);
+}
+
+hr {
+    color: var(--color-text);
+}
+
+button {
+    background-color: var(--color-accent);
+    
+}
+
+p {
+    text-align: right;
+    padding: 5px;
+    color: var(--color-text-secondary);
+}
+
+.menu {
+    background-color: var(--color-secondary);
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.row1 {
+    display: flex;
+    justify-content: space-around;
+
+}
+
+.buttonWrapper {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
