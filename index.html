@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chess Clock</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="wrapper">
@@ -13,11 +16,11 @@
             <div class="row1">
                 <div class="minutebox">
                     <h2>Minutes</h2>
-                    <input type="number" id="minutes" name="minutes">
+                    <input type="number" id="minutes" name="minutes" min="1" placeholder="10">
                 </div>
                 <div class="incrementbox">
                     <h2>Increment</h2>
-                    <input type="number" id="increment" name="increment">
+                    <input type="number" id="increment" name="increment" min="0" placeholder="0">
                 </div>
             </div>
             <hr>
