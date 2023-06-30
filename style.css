@@ -36,6 +36,35 @@ h2 {
     padding: 0;
     margin: 0;
     color: var(--color-text-secondary);
+    font-size: 48px;
+    font-weight: 200;
+    text-align: center;
+}
+
+input {
+    border-style: solid;
+    border-color: var(--color-background);
+    border-radius: 10px;
+    background-color: var(--color-background);
+    color: var(--color-text);
+    font-size: 48px;
+    width: 110px;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 16px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  display: none;
+}
+
+.inputBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 280px;
+
 }
 
 hr {
@@ -46,10 +75,16 @@ button {
     background-color: var(--color-accent);
     color: var(--color-text);
     font-family: "DM Sans", sans-serif;
-    padding: 20px;
-    border-radius: 20px;
+    padding: 0px 100px;
+    border-radius: 100px;
     font-size: 4rem;
-    
+    border-style: solid;
+    border-color: #f7a400;
+}
+
+button:hover {
+    border-color: #ffba30;
+    background-color: #ffba30;
 }
 
 p {
@@ -61,7 +96,8 @@ p {
 .menu {
     background-color: var(--color-secondary);
     border-radius: 5px;
-    padding: 10px;
+    padding: 10px 90px;
+    margin: 20px;
 }
 
 .row1 {
