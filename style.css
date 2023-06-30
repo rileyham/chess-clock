@@ -150,6 +150,7 @@ p {
     font-size: 36px;
     color: var(--color-text-secondary);
     margin: 8px;
+    width: 100px;
 }
 
 .playerBox {
@@ -169,12 +170,18 @@ p {
 }
 
 #rightBox {
-    background-color: #2e2f31;;
+    background-color: #2e2f31;
 }
 
 #exchangeIcon {
     width: 50px;
     height: auto;
+    filter: var(--filter-text-secondary);
+}
+
+#exchangeIcon:hover {
+    filter: var(--filter-text);
+    cursor: pointer;
 }
 
 #themeIcon {

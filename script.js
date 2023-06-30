@@ -1,4 +1,9 @@
 const themeButton = document.getElementById("themeIcon");
+const exchangeButton = document.getElementById("exchangeIcon");
+const leftBox = document.getElementById("leftBox");
+const leftPlayer = document.getElementById("leftPlayer");
+const rightBox = document.getElementById("rightBox");
+const rightPlayer = document.getElementById("rightPlayer")
 const root = document.documentElement;
 
 // set initial theme
@@ -17,4 +22,22 @@ function setTheme() {
 
 themeButton.addEventListener("click", function (){
     setTheme();
+});
+
+exchangeButton.addEventListener("click", function (){
+    if (leftPlayer.textContent == "White") {
+        leftPlayer.textContent = "Black";
+        leftBox.style.backgroundColor = "#2e2f31";
+
+
+        rightPlayer.textContent = "White";
+        rightBox.style.backgroundColor = "#f9f9f9";
+    }
+    else {
+        rightPlayer.textContent = "Black";
+        rightBox.style.backgroundColor = "#2e2f31";
+
+        leftPlayer.textContent = "White";
+        leftBox.style.backgroundColor = "#f9f9f9";
+    }
 });
