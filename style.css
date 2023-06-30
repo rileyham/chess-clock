@@ -1,9 +1,15 @@
-:root {
+:root, :root.light {
     --color-background: #f9f9f9;
     --color-secondary: #e4e4e7;
     --color-text: #2e2f31;
     --color-text-secondary: #515354;
     --color-accent: #f7a400;
+
+    --filter-background: invert(100%) sepia(0%) saturate(7298%) hue-rotate(51deg) brightness(140%) contrast(95%);
+    --filter-secondary: invert(96%) sepia(4%) saturate(90%) hue-rotate(202deg) brightness(96%) contrast(93%);
+    --filter-text: invert(15%) sepia(8%) saturate(201%) hue-rotate(182deg) brightness(93%) contrast(89%);
+    --filter-text-secondary: invert(30%) sepia(7%) saturate(142%) hue-rotate(155deg) brightness(98%) contrast(87%);
+
     --theme-name: "light";
 }
 
@@ -14,9 +20,31 @@
     --color-text: #f9f9f9;
     --color-text-secondary: #e4e4e7;
     --color-accent: #f7a400;
+
+    --filter-background: invert(15%) sepia(8%) saturate(201%) hue-rotate(182deg) brightness(93%) contrast(89%);
+    --filter-secondary: invert(30%) sepia(7%) saturate(142%) hue-rotate(155deg) brightness(98%) contrast(87%);
+    --filter-text: invert(100%) sepia(0%) saturate(7298%) hue-rotate(51deg) brightness(140%) contrast(95%);
+    --filter-text-secondary: invert(96%) sepia(4%) saturate(90%) hue-rotate(202deg) brightness(96%) contrast(93%);
+    
     --theme-name: "dark";
     }
 }
+
+
+    :root.dark {
+    --color-background: #2e2f31;
+    --color-secondary: #515354;
+    --color-text: #f9f9f9;
+    --color-text-secondary: #e4e4e7;
+    --color-accent: #f7a400;
+
+    --filter-background: invert(15%) sepia(8%) saturate(201%) hue-rotate(182deg) brightness(93%) contrast(89%);
+    --filter-secondary: invert(30%) sepia(7%) saturate(142%) hue-rotate(155deg) brightness(98%) contrast(87%);
+    --filter-text: invert(100%) sepia(0%) saturate(7298%) hue-rotate(51deg) brightness(140%) contrast(95%);
+    --filter-text-secondary: invert(96%) sepia(4%) saturate(90%) hue-rotate(202deg) brightness(96%) contrast(93%);
+    
+    --theme-name: "dark";
+    }
 
 body {
     background-color: var(--color-background);
@@ -147,5 +175,21 @@ p {
 #exchangeIcon {
     width: 50px;
     height: auto;
+}
 
+#themeIcon {
+    width: 50px;
+    height: auto;
+    filter: var(--filter-text-secondary);
+    align-self: right;
+    padding: 50px 20px;
+}
+
+#themeIcon:hover {
+    filter: var(--filter-text);
+    cursor: pointer;
+}
+
+.themeHolder {
+    text-align: right;
 }
