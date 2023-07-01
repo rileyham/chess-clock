@@ -24,6 +24,7 @@ themeButton.addEventListener("click", function (){
     setTheme();
 });
 
+// swaps player sides
 exchangeButton.addEventListener("click", function (){
     if (leftPlayer.textContent == "White") {
         leftPlayer.textContent = "Black";
@@ -41,3 +42,9 @@ exchangeButton.addEventListener("click", function (){
         leftBox.style.backgroundColor = "#f9f9f9";
     }
 });
+
+// timer
+let leftMinute = 0;
+let leftSecond = 0;
+let rightMinute = 0;
+let rightSecond = 0;

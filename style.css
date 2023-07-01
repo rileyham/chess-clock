@@ -176,27 +176,41 @@ p {
 #exchangeIcon {
     width: 50px;
     height: auto;
-    filter: var(--filter-text-secondary);
 }
 
-#exchangeIcon:hover {
-    filter: var(--filter-text);
-    cursor: pointer;
-}
 
 #themeIcon {
     width: 50px;
     height: auto;
-    filter: var(--filter-text-secondary);
     align-self: right;
     padding: 50px 20px;
 }
 
-#themeIcon:hover {
+
+.themeHolder {
+    text-align: right;
+}
+
+.icon {
+    filter: var(--filter-text-secondary);
+}
+
+.icon:hover {
     filter: var(--filter-text);
     cursor: pointer;
 }
 
-.themeHolder {
-    text-align: right;
+/* play.html styling */
+#iconRow {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 100px;
+    background-color: var(--color-secondary);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+#iconRow>.icon, #homeIcon {
+    width: 60px;
+    height: auto;
 }
