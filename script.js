@@ -4,6 +4,8 @@ const leftBox = document.getElementById("leftBox");
 const leftPlayer = document.getElementById("leftPlayer");
 const rightBox = document.getElementById("rightBox");
 const rightPlayer = document.getElementById("rightPlayer")
+const leftClock = document.getElementById("leftClock")
+const rightClock = document.getElementById("rightClock")
 const root = document.documentElement;
 
 // set initial theme
@@ -48,3 +50,13 @@ let leftMinute = 0;
 let leftSecond = 0;
 let rightMinute = 0;
 let rightSecond = 0;
+
+function formatTime(time) {
+    const minutes = math.floor(time/60);
+    let seconds = time % 60;
+
+    if (seconds < 10) {
+        seconds = `0${seconds}`;
+    }
+    return `${minutes}:${seconds}`;
+}
