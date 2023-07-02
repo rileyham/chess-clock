@@ -12,6 +12,7 @@ let colorBackground;
 let colorSecondary;
 let colorText;
 let colorTextSecondary;
+let myInterval;
 
 root.className = currentTheme;
 
@@ -39,11 +40,12 @@ rightClock.textContent = startingMinutes + ":00";
 pauseToggle.addEventListener("click", function() {
     if(isPaused) {
         isPaused = false;
-        setInterval(updateCountdown, 1000);
+        myInterval = setInterval(updateCountdown, 1000);
         leftClock.style.backgroundColor = "#f7a400";
     }
     else {
         isPaused = true;
+        clearInterval(myInterval);
         leftClock.style.backgroundColor = colorSecondary;
         rightClock.style.backgroundColor = colorSecondary;
     }

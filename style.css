@@ -234,5 +234,7 @@ p {
     color: var(--color-text);
     margin: 30px;
     padding: 80px 50px;
+    width: 400px;
     border-radius: 10px;
+    text-align: center;
 }
