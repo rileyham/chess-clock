@@ -238,3 +238,9 @@ p {
     border-radius: 10px;
     text-align: center;
 }
+
+.playerLine {
+    height: 8px;
+    width: 400px;
+    border-radius: 5px;
+}

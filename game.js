@@ -1,7 +1,11 @@
 const leftClock = document.getElementById("leftClock");
 const rightClock = document.getElementById("rightClock");
+const leftTimer = document.getElementById("leftTimer");
+const rightTimer = document.getElementById("rightTimer");
 const pauseToggle = document.getElementById("pauseToggle");
 const retryButton = document.getElementById("retryButton");
+const leftLine = document.getElementById("leftLine");
+const rightLine = document.getElementById("rightLine");
 const root = document.documentElement;
 
 // load in variables from menu page
@@ -16,9 +20,10 @@ let colorText;
 let colorTextSecondary;
 let myIntervalLeft;
 let myIntervalRight;
+let leftToMove;
 
+// set theme
 root.className = currentTheme;
-
 if(root.className == "light") {
     colorBackground = "#f9f9f9";
     colorSecondary = "#e4e4e7";
@@ -55,12 +60,12 @@ pauseToggle.addEventListener("click", function() {
     }
 });
 
-//retry button code
+// retry button code
 retryButton.addEventListener("click", function() {
     isPaused = true;
     clearInterval(myIntervalLeft);
     clearInterval(myIntervalRight);
-    if(leftPlayer == "black") {
+    if(leftPlayer == "Black") {
         leftToMove = false;
     }
     else {
@@ -71,8 +76,8 @@ retryButton.addEventListener("click", function() {
     rightClock.textContent = startingMinutes + ":00";
     
 
-    leftClock.style.backgroundColor = colorSecondary;
-    rightClock.style.backgroundColor = colorSecondary;
+    leftTimer.style.backgroundColor = colorSecondary;
+    rightTimer.style.backgroundColor = colorSecondary;
 });
 
 // switchClock buttons
@@ -81,16 +86,16 @@ window.onkeydown = function(event) {
         isPaused = false;
         if(leftToMove) {
             myIntervalLeft = setInterval(updateCountdownLeft, 1000);
-            leftClock.style.backgroundColor = "#f7a400";
-            rightClock.style.backgroundColor = colorSecondary;
+            leftTimer.style.backgroundColor = "#f7a400";
+            rightTimer.style.backgroundColor = colorSecondary;
             leftToMove = false;
             clearInterval(myIntervalRight);
 
         }
         else {
             myIntervalRight = setInterval(updateCountdownRight, 1000);
-            rightClock.style.backgroundColor = "#f7a400";
-            leftClock.style.backgroundColor = colorSecondary;
+            rightTimer.style.backgroundColor = "#f7a400";
+            leftTimer.style.backgroundColor = colorSecondary;
             leftToMove = true;
             clearInterval(myIntervalLeft);
         }
@@ -101,13 +106,20 @@ window.onkeydown = function(event) {
 
 // initialize clocks
 let isPaused = true;
-let leftTime = rightTime = startingMinutes * 60;
-let leftToMove = true;
-if(leftPlayer == "black") {
+let leftTime = rightTime = (startingMinutes * 60) - 1;
+console.log(leftPlayer);
+if(leftPlayer == "White") {
+    leftToMove = true;
+    leftLine.style.backgroundColor = "#f9f9f9";
+    rightLine.style.backgroundColor = "#2e2f31";
+}
+else {
     leftToMove = false;
+    leftLine.style.backgroundColor = "#2e2f31";
+    rightLine.style.backgroundColor = "#f9f9f9";
 }
 
-leftClock.textContent = startingMinutes + ":00";
+leftClock.innerHTML = startingMinutes + ":00";
 rightClock.textContent = startingMinutes + ":00";
 
 
@@ -141,11 +153,11 @@ function switchClock() {
     isPaused = false;
     if(leftToMove) {
         myInterval = setInterval(updateCountdownLeft, 1000);
-        leftClock.style.backgroundColor = "#f7a400";
+        leftTimer.style.backgroundColor = "#f7a400";
     }
     else {
         myInterval = setInterval(updateCountdownRight, 1000);
-        rightClock.style.backgroundColor = "#f7a400";
+        rightTimer.style.backgroundColor = "#f7a400";
     }
 
 }
