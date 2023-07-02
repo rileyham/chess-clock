@@ -5,10 +5,9 @@ const leftBox = document.getElementById("leftBox");
 const leftPlayer = document.getElementById("leftPlayer");
 const rightBox = document.getElementById("rightBox");
 const rightPlayer = document.getElementById("rightPlayer");
-const leftClock = document.getElementById("leftClock");
-const rightClock = document.getElementById("rightClock");
 const minutesInput = document.getElementById("minutes");
-const incrementInput = document.getElementById("increment")
+const incrementInput = document.getElementById("increment");
+
 const root = document.documentElement;
 
 // set initial theme
@@ -24,23 +23,19 @@ function setTheme() {
     root.className = newTheme; 
     console.log("theme");
 }
-if(themeButton){
     themeButton.addEventListener("click", function (){
         setTheme();
     });
-}
 
 // swaps player sides
-if(exchangeButton) {
     exchangeButton.addEventListener("click", function (){
         if (leftPlayer.textContent == "White") {
             leftPlayer.textContent = "Black";
             leftBox.style.backgroundColor = "#2e2f31";
-    
-    
-            rightPlayer.textContent = "White";
-            rightBox.style.backgroundColor = "#f9f9f9";
-        }
+          
+             rightPlayer.textContent = "White";
+             rightBox.style.backgroundColor = "#f9f9f9";
+            }
         else {
             rightPlayer.textContent = "Black";
             rightBox.style.backgroundColor = "#2e2f31";
@@ -49,38 +44,11 @@ if(exchangeButton) {
             leftBox.style.backgroundColor = "#f9f9f9";
         }
     });
-}
 
-let startingMinutes = 9;
-// start button code
-if(startButton) {
-    startButton.addEventListener("click", function (){
-       startingMinutes = minutesInput.value;
-    });
-}
-
-
-// timer
-if(leftClock) {
-    
-    let time = startingMinutes * 60;
-
-    setInterval(updateCountdown, 1000);
-
-    function updateCountdown() {
-        const minutes = Math.floor(time / 60);
-        const seconds = time % 60;
-        
-        leftClock.textContent = `${minutes}:${seconds}`;
-        time--;
-    }
-
-}
-
-
-let leftMinute = 0;
-let leftSecond = 0;
-let rightMinute = 0;
-let rightSecond = 0;
-
-
+startButton.addEventListener("click", function (){
+    // store data before leaving the page
+    sessionStorage.setItem("currentTheme", root.className);
+    sessionStorage.setItem("startingMinutes", minutesInput.value);
+    sessionStorage.setItem("increment", incrementInput.value);
+    sessionStorage.setItem("leftPlayer", leftPlayer.textContent);
+});
