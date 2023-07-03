@@ -16,6 +16,7 @@ const endBell = new Audio("end.wav");
 let currentTheme = sessionStorage.getItem("currentTheme");
 let startingMinutes = sessionStorage.getItem("startingMinutes");
 let increment = sessionStorage.getItem("increment");
+increment = parseInt(increment) + 1;
 let leftPlayer = sessionStorage.getItem("leftPlayer");
 
 let colorBackground;
@@ -133,10 +134,31 @@ function switchClock() {
         return;
     }
     click.play();
-    isPaused = false;
+
     if(!gameBegun) {
         gameBegun = true;
     }
+    else if(!isPaused){
+        if(!leftToMove){
+            leftTime += increment;
+  
+            const leftMinutes = Math.floor(leftTime / 60);
+            let leftSeconds = leftTime % 60;
+    
+            leftSeconds = leftSeconds < 10 ? "0" + leftSeconds : leftSeconds;
+            leftClock.textContent = `${leftMinutes}:${leftSeconds}`;      
+        }
+        else {
+            rightTime += increment;
+
+            const rightMinutes = Math.floor(rightTime / 60);
+            let rightSeconds = rightTime % 60;
+    
+            rightSeconds = rightSeconds < 10 ? "0" + rightSeconds : rightSeconds;
+            rightClock.textContent = `${rightMinutes}:${rightSeconds}`;
+        }
+    }
+    isPaused = false;
     if(leftToMove) {
         myIntervalLeft = setInterval(updateCountdownLeft, 1000);
         leftTimer.style.backgroundColor = "#f7a400";
