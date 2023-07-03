@@ -8,6 +8,10 @@ const leftLine = document.getElementById("leftLine");
 const rightLine = document.getElementById("rightLine");
 const root = document.documentElement;
 
+const click = new Audio("click.wav");
+const pauseClick = new Audio("pause.wav");
+const endBell = new Audio("end.wav");
+
 // load in variables from menu page
 let currentTheme = sessionStorage.getItem("currentTheme");
 let startingMinutes = sessionStorage.getItem("startingMinutes");
@@ -22,6 +26,7 @@ let myIntervalLeft;
 let myIntervalRight;
 let leftToMove;
 let gameBegun = false;
+
 
 // set theme
 root.className = currentTheme;
@@ -41,6 +46,7 @@ else {
 // pause button code
 pauseToggle.addEventListener("click", function() {
     if(!gameBegun) {
+        click.play();
         isPaused = false;
         if(leftToMove) {
             myIntervalLeft = setInterval(updateCountdownLeft, 1000);
@@ -57,6 +63,7 @@ pauseToggle.addEventListener("click", function() {
     }
     
     if(isPaused) {
+        click.play();
         isPaused = false;
         if(leftToMove) {
             myIntervalLeft = setInterval(updateCountdownLeft, 1000);
@@ -71,6 +78,7 @@ pauseToggle.addEventListener("click", function() {
 
     }
     else {
+        pauseClick.play();
         isPaused = true;
         clearInterval(myIntervalLeft);
         clearInterval(myIntervalRight);
@@ -115,6 +123,7 @@ window.onkeydown = function(event) {
 
 // switchClock
 function switchClock() {
+    click.play();
     isPaused = false;
     if(!gameBegun) {
         gameBegun = true;
