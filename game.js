@@ -26,6 +26,7 @@ let myIntervalLeft;
 let myIntervalRight;
 let leftToMove;
 let gameBegun = false;
+let gameOver = false;
 
 
 // set theme
@@ -45,6 +46,9 @@ else {
 
 // pause button code
 pauseToggle.addEventListener("click", function() {
+    if(gameOver){
+        return;
+    }
     if(!gameBegun) {
         click.play();
         isPaused = false;
@@ -97,6 +101,8 @@ pauseToggle.addEventListener("click", function() {
 // retry button code
 retryButton.addEventListener("click", function() {
     isPaused = true;
+    gameBegun = false;
+    gameOver = false;
     clearInterval(myIntervalLeft);
     clearInterval(myIntervalRight);
     if(leftPlayer == "Black") {
@@ -123,6 +129,9 @@ window.onkeydown = function(event) {
 
 // switchClock
 function switchClock() {
+    if(gameOver) {
+        return;
+    }
     click.play();
     isPaused = false;
     if(!gameBegun) {
@@ -165,6 +174,18 @@ rightClock.textContent = startingMinutes + ":00";
 
 
     function updateCountdownLeft() {
+        if(gameOver){
+            return;
+        }
+        if(leftTime == 0) {
+            endBell.play();
+            isPaused = true;
+            gameOver = true;
+            leftClock.textContent = "0:00";
+            leftTimer.style.backgroundColor = "#F64141";
+            return;
+        }
+
         if(isPaused) {
             return;
         }
@@ -178,6 +199,19 @@ rightClock.textContent = startingMinutes + ":00";
     }
 
     function updateCountdownRight() {
+        if(gameOver){
+            return;
+        }
+        if(rightTime == 0) {
+            endBell.play();
+            isPaused = true;
+            gameOver = true;
+            rightClock.textContent = "0:00";
+            rightTimer.style.backgroundColor = "#F64141";
+            console.log("over");
+            return;
+        }
+
         if(isPaused) {
             return;
         }
