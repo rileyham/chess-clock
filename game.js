@@ -21,6 +21,7 @@ let colorTextSecondary;
 let myIntervalLeft;
 let myIntervalRight;
 let leftToMove;
+let gameBegun = false;
 
 // set theme
 root.className = currentTheme;
@@ -39,24 +40,49 @@ else {
 
 // pause button code
 pauseToggle.addEventListener("click", function() {
+    if(!gameBegun) {
+        isPaused = false;
+        if(leftToMove) {
+            myIntervalLeft = setInterval(updateCountdownLeft, 1000);
+            leftTimer.style.backgroundColor = "#f7a400";
+            leftToMove = false;
+        }
+        else {
+            myIntervalRight = setInterval(updateCountdownRight, 1000);
+            rightTimer.style.backgroundColor = "#f7a400";
+            leftToMove = true;
+        }
+        gameBegun = true; 
+        return;
+    }
+    
     if(isPaused) {
         isPaused = false;
         if(leftToMove) {
             myIntervalLeft = setInterval(updateCountdownLeft, 1000);
-            leftClock.style.backgroundColor = "#f7a400";
+            leftTimer.style.backgroundColor = "#f7a400";
+            leftToMove = false;
         }
         else {
             myIntervalRight = setInterval(updateCountdownRight, 1000);
-            rightClock.style.backgroundColor = "#f7a400";
+            rightTimer.style.backgroundColor = "#f7a400";
+            leftToMove = true;
         }
 
     }
     else {
         isPaused = true;
         clearInterval(myIntervalLeft);
-        clearInterval(myIntervalRight)
-        leftClock.style.backgroundColor = colorSecondary;
-        rightClock.style.backgroundColor = colorSecondary;
+        clearInterval(myIntervalRight);
+        leftTimer.style.backgroundColor = colorSecondary;
+        rightTimer.style.backgroundColor = colorSecondary;
+
+        if(leftToMove) {
+            leftToMove = false;
+        }
+        else {
+            leftToMove = true;
+        }
     }
 });
 
@@ -71,7 +97,7 @@ retryButton.addEventListener("click", function() {
     else {
         leftToMove = true;
     }
-    leftTime = rightTime = startingMinutes * 60;
+    leftTime = rightTime = (startingMinutes * 60) - 1;
     leftClock.textContent = startingMinutes + ":00";
     rightClock.textContent = startingMinutes + ":00";
     
@@ -83,22 +109,29 @@ retryButton.addEventListener("click", function() {
 // switchClock buttons
 window.onkeydown = function(event) {
     if(event.which == 32) {
-        isPaused = false;
-        if(leftToMove) {
-            myIntervalLeft = setInterval(updateCountdownLeft, 1000);
-            leftTimer.style.backgroundColor = "#f7a400";
-            rightTimer.style.backgroundColor = colorSecondary;
-            leftToMove = false;
-            clearInterval(myIntervalRight);
+        switchClock();
+    }
+}
 
-        }
-        else {
-            myIntervalRight = setInterval(updateCountdownRight, 1000);
-            rightTimer.style.backgroundColor = "#f7a400";
-            leftTimer.style.backgroundColor = colorSecondary;
-            leftToMove = true;
-            clearInterval(myIntervalLeft);
-        }
+// switchClock
+function switchClock() {
+    isPaused = false;
+    if(!gameBegun) {
+        gameBegun = true;
+    }
+    if(leftToMove) {
+        myIntervalLeft = setInterval(updateCountdownLeft, 1000);
+        leftTimer.style.backgroundColor = "#f7a400";
+        rightTimer.style.backgroundColor = colorSecondary;
+        leftToMove = false;
+        clearInterval(myIntervalRight);
+    }
+    else {
+        myIntervalRight = setInterval(updateCountdownRight, 1000);
+        rightTimer.style.backgroundColor = "#f7a400";
+        leftTimer.style.backgroundColor = colorSecondary;
+        leftToMove = true;
+        clearInterval(myIntervalLeft);
     }
 }
 
@@ -107,7 +140,6 @@ window.onkeydown = function(event) {
 // initialize clocks
 let isPaused = true;
 let leftTime = rightTime = (startingMinutes * 60) - 1;
-console.log(leftPlayer);
 if(leftPlayer == "White") {
     leftToMove = true;
     leftLine.style.backgroundColor = "#f9f9f9";
@@ -148,16 +180,3 @@ rightClock.textContent = startingMinutes + ":00";
         rightClock.textContent = `${rightMinutes}:${rightSeconds}`;
         rightTime--;
     }
-
-function switchClock() {
-    isPaused = false;
-    if(leftToMove) {
-        myInterval = setInterval(updateCountdownLeft, 1000);
-        leftTimer.style.backgroundColor = "#f7a400";
-    }
-    else {
-        myInterval = setInterval(updateCountdownRight, 1000);
-        rightTimer.style.backgroundColor = "#f7a400";
-    }
-
-}
